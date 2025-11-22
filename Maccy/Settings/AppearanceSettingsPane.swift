@@ -50,7 +50,10 @@ struct AppearanceSettingsPane: View {
 
   var body: some View {
     Settings.Container(contentWidth: 650) {
-      Settings.Section(label: { Text("PopupAt", tableName: "AppearanceSettings") }) {
+      Settings.Section(label: {
+        Text("PopupAt", tableName: "AppearanceSettings")
+          .font(.system(size: 14))
+      }) {
         HStack {
           Picker("", selection: $popupAt) {
             ForEach(PopupPosition.allCases) { position in
@@ -58,11 +61,13 @@ struct AppearanceSettingsPane: View {
                 screenPicker(for: position)
               } else {
                 Text(position.description)
+                  .font(.system(size: 14))
               }
             }
           }
           .labelsHidden()
-          .frame(width: 141, alignment: .leading)
+          .frame(width: 180, alignment: .leading)
+          .controlSize(.large)
           .help(Text("PopupAtTooltip", tableName: "AppearanceSettings"))
 
           if popupAt == .lastPosition {
@@ -79,31 +84,46 @@ struct AppearanceSettingsPane: View {
         }
       }
 
-      Settings.Section(label: { Text("PinTo", tableName: "AppearanceSettings") }) {
+      Settings.Section(label: {
+        Text("PinTo", tableName: "AppearanceSettings")
+          .font(.system(size: 14))
+      }) {
         Picker("", selection: $pinTo) {
           ForEach(PinsPosition.allCases) { position in
             Text(position.description)
+              .font(.system(size: 14))
           }
         }
         .labelsHidden()
-        .frame(width: 141, alignment: .leading)
+        .frame(width: 180, alignment: .leading)
+        .controlSize(.large)
         .help(Text("PinToTooltip", tableName: "AppearanceSettings"))
       }
 
-      Settings.Section(label: { Text("ImageHeight", tableName: "AppearanceSettings") }) {
+      Settings.Section(label: {
+        Text("ImageHeight", tableName: "AppearanceSettings")
+          .font(.system(size: 14))
+      }) {
         HStack {
           TextField("", value: $imageHeight, formatter: imageHeightFormatter)
-            .frame(width: 120)
+            .font(.system(size: 14))
+            .frame(width: 150)
+            .controlSize(.large)
             .help(Text("ImageHeightTooltip", tableName: "AppearanceSettings"))
           Stepper("", value: $imageHeight, in: 1...200)
             .labelsHidden()
         }
       }
 
-      Settings.Section(label: { Text("PreviewDelay", tableName: "AppearanceSettings") }) {
+      Settings.Section(label: {
+        Text("PreviewDelay", tableName: "AppearanceSettings")
+          .font(.system(size: 14))
+      }) {
         HStack {
           TextField("", value: $previewDelay, formatter: previewDelayFormatter)
-            .frame(width: 120)
+            .font(.system(size: 14))
+            .frame(width: 150)
+            .controlSize(.large)
             .help(Text("PreviewDelayTooltip", tableName: "AppearanceSettings"))
           Stepper("", value: $previewDelay, in: 200...100_000)
             .labelsHidden()
@@ -112,27 +132,34 @@ struct AppearanceSettingsPane: View {
 
       Settings.Section(
         bottomDivider: true,
-        label: { Text("HighlightMatches", tableName: "AppearanceSettings") }
+        label: {
+          Text("HighlightMatches", tableName: "AppearanceSettings")
+            .font(.system(size: 14))
+        }
       ) {
         Picker("", selection: $highlightMatch) {
           ForEach(HighlightMatch.allCases) { match in
             Text(match.description)
+              .font(.system(size: 14))
           }
         }
         .labelsHidden()
-        .frame(width: 141, alignment: .leading)
+        .frame(width: 180, alignment: .leading)
+        .controlSize(.large)
         .help(Text("HighlightMatchesTooltip", tableName: "AppearanceSettings"))
       }
 
       Settings.Section(title: "") {
         Defaults.Toggle(key: .showSpecialSymbols) {
           Text("ShowSpecialSymbols", tableName: "AppearanceSettings")
+            .font(.system(size: 14))
         }
         .help(Text("ShowSpecialSymbolsTooltip", tableName: "AppearanceSettings"))
 
         HStack {
           Defaults.Toggle(key: .showInStatusBar) {
             Text("ShowMenuIcon", tableName: "AppearanceSettings")
+              .font(.system(size: 14))
           }
 
           Picker("", selection: $menuIcon) {
@@ -143,40 +170,47 @@ struct AppearanceSettingsPane: View {
           .labelsHidden()
           .scaledToFit()
           .disabled(!showInStatusBar)
-          .controlSize(.small)
+          .controlSize(.regular)
         }
 
         Defaults.Toggle(key: .showRecentCopyInMenuBar) {
           Text("ShowRecentCopyInMenuBar", tableName: "AppearanceSettings")
+            .font(.system(size: 14))
         }
         HStack {
           Defaults.Toggle(key: .showSearch) {
             Text("ShowSearchField", tableName: "AppearanceSettings")
+              .font(.system(size: 14))
           }
 
           Picker("", selection: $searchVisibility) {
             ForEach(SearchVisibility.allCases) { type in
               Text(type.description)
+                .font(.system(size: 14))
             }
           }
           .labelsHidden()
           .scaledToFit()
           .disabled(!showSearch)
-          .controlSize(.small)
+          .controlSize(.regular)
         }
         Defaults.Toggle(key: .showTitle) {
           Text("ShowTitleBeforeSearchField", tableName: "AppearanceSettings")
+            .font(.system(size: 14))
         }
         Defaults.Toggle(key: .showApplicationIcons) {
           Text("ShowApplicationIcons", tableName: "AppearanceSettings")
+            .font(.system(size: 14))
         }
 
         Defaults.Toggle(key: .showFooter) {
           Text("ShowFooter", tableName: "AppearanceSettings")
+            .font(.system(size: 14))
         }
         Text("OpenPreferencesWarning", tableName: "AppearanceSettings")
+          .font(.system(size: 13))
           .opacity(showFooter ? 0 : 1)
-          .controlSize(.small)
+          .controlSize(.regular)
           .foregroundStyle(.gray)
       }
     }
@@ -196,17 +230,21 @@ struct AppearanceSettingsPane: View {
 
     Picker(selection: screenBinding) {
       Text(labelForScreen(index: 0))
+        .font(.system(size: 14))
         .tag(0)
 
       ForEach(screens.indices, id: \.self) { index in
         Text(labelForScreen(index: index + 1))
+          .font(.system(size: 14))
           .tag(index + 1)
       }
     } label: {
       if popupAt == position {
         Text("\(position.description) (\(labelForScreen(index: popupScreen)))")
+          .font(.system(size: 14))
       } else {
         Text(position.description)
+          .font(.system(size: 14))
       }
     }
   }

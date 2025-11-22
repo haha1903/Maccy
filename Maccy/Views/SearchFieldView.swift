@@ -37,19 +37,19 @@ struct SearchFieldView: View {
         )
         .shadow(color: Color.blue.opacity(isFocused ? 0.15 : 0.08), radius: 4, x: 0, y: 2)
         .shadow(color: Color.black.opacity(0.08), radius: 1, x: 0, y: 1)
-        .frame(height: 28)
+        .frame(height: 44)
 
-      HStack(spacing: 6) {
+      HStack(spacing: 8) {
         Image(systemName: "magnifyingglass")
-          .font(.system(size: 12, weight: .medium))
+          .font(.system(size: 16, weight: .medium))
           .foregroundStyle(.blue.opacity(0.8))
-          .padding(.leading, 10)
+          .padding(.leading, 12)
 
         TextField(placeholder, text: $query)
           .disableAutocorrection(true)
           .lineLimit(1)
           .textFieldStyle(.plain)
-          .font(.system(size: 13))
+          .font(.system(size: 18))
           .onSubmit {
             appState.select()
           }
@@ -61,9 +61,9 @@ struct SearchFieldView: View {
             }
           } label: {
             Image(systemName: "xmark.circle.fill")
-              .font(.system(size: 12))
+              .font(.system(size: 16))
               .foregroundStyle(.blue.opacity(0.7))
-              .padding(.trailing, 10)
+              .padding(.trailing, 12)
           }
           .buttonStyle(PlainButtonStyle())
           .transition(.scale.combined(with: .opacity))

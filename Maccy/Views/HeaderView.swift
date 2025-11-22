@@ -14,7 +14,7 @@ struct HeaderView: View {
     HStack(spacing: 10) {
       if showTitle {
         Text("Pasteo")
-          .font(.system(size: 13, weight: .semibold))
+          .font(.system(size: 18, weight: .semibold))
           .foregroundStyle(
             LinearGradient(
               colors: [.blue, .purple],

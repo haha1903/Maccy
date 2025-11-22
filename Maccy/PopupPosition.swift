@@ -3,10 +3,10 @@ import Defaults
 import Foundation
 
 enum PopupPosition: String, CaseIterable, Identifiable, CustomStringConvertible, Defaults.Serializable {
+  case center
   case cursor
   case statusItem
   case window
-  case center
   case lastPosition
 
   var id: Self { self }

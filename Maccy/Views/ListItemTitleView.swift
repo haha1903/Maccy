@@ -8,11 +8,13 @@ struct ListItemTitleView<Title: View>: View {
     if let attributedTitle {
       Text(attributedTitle)
         .accessibilityIdentifier("copy-history-item")
+        .font(.system(size: 15))
         .lineLimit(1)
         .truncationMode(.middle)
     } else {
       title()
         .accessibilityIdentifier("copy-history-item")
+        .font(.system(size: 15))
         .lineLimit(1)
         .truncationMode(.middle)
         // Workaround for macOS 26 to avoid flipped text

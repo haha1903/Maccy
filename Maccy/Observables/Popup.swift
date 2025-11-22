@@ -31,9 +31,9 @@ class Popup {
   }
 
   static let itemHeight: CGFloat = if #available(macOS 26.0, *) {
-    24
+    36
   } else {
-    22
+    34
   }
 
   var needsResize = false
